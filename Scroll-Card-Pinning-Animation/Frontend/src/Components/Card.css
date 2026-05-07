@@ -1,0 +1,67 @@
+:root {
+  /* Dark Theme Palette with your favorite Orange Accents */
+  --bg-dark: #0a0a0a;
+  --card-glass: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --orange-gradient: linear-gradient(135deg, #ff6f00, #ff9100);
+  --premium-purple: #9333ea;
+}
+
+.sticky-cards {
+  position: relative; /* Fixed position layout handle karne ke liye */
+  display: flex;
+  flex-direction: column; /* Stacked layout for scroll effect */
+  align-items: center;
+  gap: 10vh; /* Cards ke beech gap */
+  padding: 10vh 0;
+  background: var(--bg-dark);
+}
+
+.card {
+  width: 600px;
+  height: 350px;
+  position: sticky;
+  top: 15vh; /* Scroll trigger point */
+  border-radius: 24px;
+  padding: 3rem;
+  background: var(--card-glass);
+  backdrop-filter: blur(15px); /* Premium Blur effect */
+  border: 1px solid var(--card-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Card Accent Borders - Glowing effect */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 2px; /* Border thickness */
+  background: linear-gradient(to bottom right, rgba(255,111,0,0.5), transparent, rgba(147,51,234,0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.card h3 {
+  font-size: 2rem;
+  background: var(--orange-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.card span {
+  color: var(--premium-purple);
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.card p {
+  color: #ccc;
+  line-height: 1.8;
+  margin-top: 20px;
+}
