@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Horizontal Scroll Storytelling</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- THREE JS IMPORT MAP -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <!-- SCROLLTRIGGER -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+</head>
+
+<body>
+
+
+  <!-- ===================================== -->
+  <!-- FIXED CANVAS FOR THREEJS -->
+  <!-- ===================================== -->
+
+  <canvas class="webgl"></canvas>
+
+
+
+  <!-- ===================================== -->
+  <!-- HORIZONTAL STORY SECTION -->
+  <!-- ===================================== -->
+
+  <section class="horizontal-section">
+
+    <!-- Horizontal wrapper -->
+    <div class="horizontal-wrapper">
+
+
+      <!-- PANEL 1 -->
+      <div class="panel">
+        <div class="content">
+          <h1>Lens Assembly</h1>
+          <p>
+            Premium cinematic lens system designed for storytelling.
+          </p>
+        </div>
+      </div>
+
+
+      <!-- PANEL 2 -->
+      <div class="panel">
+        <div class="content">
+          <h1>Camera Body</h1>
+          <p>
+            Durable body structure with cinematic precision.
+          </p>
+        </div>
+      </div>
+
+
+      <!-- PANEL 3 -->
+      <div class="panel">
+        <div class="content">
+          <h1>Control Buttons</h1>
+          <p>
+            Smooth controls for creators and filmmakers.
+          </p>
+        </div>
+      </div>
+
+
+      <!-- PANEL 4 -->
+      <div class="panel">
+        <div class="content">
+          <h1>Final Product</h1>
+          <p>
+            A complete cinematic camera experience.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- NEXT NORMAL SECTION -->
+  <section class="next-section">
+
+    <h1>NEXT SECTION</h1>
+
+  </section>
+
+
+  <!-- MAIN JS -->
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
