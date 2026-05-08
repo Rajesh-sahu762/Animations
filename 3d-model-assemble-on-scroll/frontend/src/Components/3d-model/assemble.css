@@ -80,7 +80,7 @@ body{
 ========================================= */
 
 .content{
-  width:400px;
+  width: max-content;
   color:white;
 }
 

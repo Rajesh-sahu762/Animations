@@ -258,7 +258,7 @@ const Assemble = () => {
 
         tl.to(".horizontal-wrapper", {
 
-          xPercent: -75,
+          xPercent: -100 * (panels.length - 0.4),
 
           ease: "none",
 
@@ -439,10 +439,7 @@ const Assemble = () => {
       {/* ========================================= */}
 
       <section className="horizontal-section">
-
         <div className="horizontal-wrapper">
-
-
           {/* PANEL 1 */}
           <div className="panel">
 
@@ -458,8 +455,6 @@ const Assemble = () => {
             </div>
 
           </div>
-
-
 
           {/* PANEL 2 */}
           <div className="panel">
@@ -477,8 +472,6 @@ const Assemble = () => {
 
           </div>
 
-
-
           {/* PANEL 3 */}
           <div className="panel">
 
@@ -494,8 +487,6 @@ const Assemble = () => {
             </div>
 
           </div>
-
-
 
           {/* PANEL 4 */}
           <div className="panel">
