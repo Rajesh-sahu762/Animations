@@ -59,10 +59,9 @@ const ImageSequence = () => {
 
     const currentFrame = (index) => {
 
-      return `/2d-Image-animation/React/src/assets/frame/frame_${String(index).padStart(3, "0")}.jpg`;
+      return `/src/assets/frame/frame_${String(index).padStart(3, "0")}.jpg`;
 
     };
-
 
 
     // ==========================================
@@ -117,65 +116,81 @@ const ImageSequence = () => {
     // ==========================================
     // DRAW IMAGE FUNCTION
     // ==========================================
+function drawImage(img) {
 
-    function drawImage(img) {
+  if (!img) return;
 
-      // CLEAR OLD FRAME
+  // CLEAR
 
-      context.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-
-
-      // CONTAIN SCALE
-
-      const scale = Math.min(
-        canvas.width / img.width,
-        canvas.height / img.height
-      );
+  context.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
 
 
-      // CUSTOM ZOOM
+  // IMAGE + CANVAS RATIO
 
-      const zoom = 2.5;
+  const imageRatio =
+    img.width / img.height;
 
-
-
-      const scaledWidth =
-        img.width * scale * zoom;
-
-      const scaledHeight =
-        img.height * scale * zoom;
+  const canvasRatio =
+    canvas.width / canvas.height;
 
 
 
-      // CENTER IMAGE
-
-      const x =
-        (canvas.width - scaledWidth) / 2;
-
-      const y =
-        (canvas.height - scaledHeight) / 2;
+  let drawWidth;
+  let drawHeight;
+  let x;
+  let y;
 
 
 
-      // DRAW IMAGE
+  // ==========================================
+  // COVER EFFECT
+  // ==========================================
 
-      context.drawImage(
-        img,
-        x,
-        y,
-        scaledWidth,
-        scaledHeight
-      );
+  if (imageRatio > canvasRatio) {
 
-    }
+    drawHeight = canvas.height;
 
+    drawWidth =
+      img.width *
+      (canvas.height / img.height);
+
+    x = (canvas.width - drawWidth) / 2;
+
+    y = 0;
+
+  } else {
+
+    drawWidth = canvas.width;
+
+    drawHeight =
+      img.height *
+      (canvas.width / img.width);
+
+    x = 0;
+
+    y = (canvas.height - drawHeight) / 2;
+
+  }
+
+
+
+  // DRAW IMAGE
+
+  context.drawImage(
+    img,
+    x,
+    y,
+    drawWidth,
+    drawHeight
+  );
+
+}
 
 
     // ==========================================
