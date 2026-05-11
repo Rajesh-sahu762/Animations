@@ -8,7 +8,6 @@
   box-sizing:border-box;
 }
 
-
 body{
   overflow-x:hidden;
   background:black;
@@ -28,6 +27,12 @@ body{
   width:100%;
   height:100%;
   z-index:1;
+
+  touch-action:none;
+}
+
+canvas{
+  display:block;
 }
 
 
@@ -41,13 +46,13 @@ body{
   width:100%;
   height:100vh;
   z-index:2;
+  overflow:hidden;
 }
 
 
 
 /* =========================================
    HORIZONTAL WRAPPER
-   TOTAL WIDTH = PANELS COUNT
 ========================================= */
 
 .horizontal-wrapper{
@@ -59,41 +64,52 @@ body{
 
 
 /* =========================================
-   EACH PANEL
+   PANEL
 ========================================= */
 
 .panel{
   width:100vw;
   height:100vh;
-  flex-shrink: 0;
+
+  flex-shrink:0;
+
   display:flex;
   justify-content:flex-end;
   align-items:center;
 
   padding-right:10vw;
+
+  position:relative;
 }
 
 
 
 /* =========================================
-   CONTENT BOX
+   CONTENT
 ========================================= */
 
 .content{
   width:400px;
-  color:white;
-}
 
+  color:white;
+
+  position:relative;
+  z-index:5;
+}
 
 .content h1{
   font-size:5rem;
-  margin-bottom:20px;
-}
 
+  margin-bottom:20px;
+
+  line-height:0.95;
+}
 
 .content p{
   font-size:1.2rem;
+
   line-height:1.6;
+
   opacity:0.8;
 }
 
@@ -105,6 +121,7 @@ body{
 
 .next-section{
   min-height:100vh;
+
   background:white;
   color:black;
 
@@ -116,11 +133,9 @@ body{
   z-index:2;
 }
 
-
 .next-section h1{
   font-size:5rem;
 }
-
 
 
 
@@ -128,13 +143,13 @@ body{
    TABLET
 ========================================= */
 
-@media(max-width:992px){
+@media(max-width:1024px){
 
   .panel{
 
     justify-content:center;
 
-    padding-inline:40px;
+    padding-inline:50px;
 
   }
 
@@ -150,13 +165,13 @@ body{
 
   .content h1{
 
-    font-size:3.5rem;
+    font-size:4rem;
 
   }
 
   .content p{
 
-    font-size:1rem;
+    font-size:1.05rem;
 
   }
 
@@ -170,19 +185,15 @@ body{
 
 @media(max-width:768px){
 
-  .horizontal-wrapper{
-
-    width:400vw;
-
-  }
-
   .panel{
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-end;
 
     padding-inline:24px;
+
+    padding-bottom:100px;
 
   }
 
@@ -190,16 +201,16 @@ body{
 
     width:100%;
 
-    text-align:center;
-
+    text-align:left;
   }
 
   .content h1{
 
-    font-size:2.5rem;
+    font-size:3.2rem;
 
-    line-height:1.1;
+    line-height:0.95;
 
+    margin-bottom:14px;
   }
 
   .content p{
@@ -207,7 +218,6 @@ body{
     font-size:0.95rem;
 
     line-height:1.7;
-
   }
 
 }
@@ -220,9 +230,17 @@ body{
 
 @media(max-width:480px){
 
+  .panel{
+
+    padding-inline:20px;
+
+    padding-bottom:80px;
+
+  }
+
   .content h1{
 
-    font-size:2rem;
+    font-size:2.5rem;
 
   }
 
