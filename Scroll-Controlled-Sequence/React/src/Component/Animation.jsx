@@ -13,7 +13,7 @@ const Animation = () => {
   const canvasRef = useRef(null);
 
   // ==========================================
-  // IMAGE SEQUENCE OBJECT
+  // IMAGE SEQUENCE
   // ==========================================
 
   const imageSequence = useRef({
@@ -34,8 +34,6 @@ const Animation = () => {
 
     context.imageSmoothingQuality = "high";
 
-
-
     // ==========================================
     // HIGH DPI FIX
     // ==========================================
@@ -43,10 +41,12 @@ const Animation = () => {
     const setCanvasSize = () => {
 
       canvas.width =
-        window.innerWidth * window.devicePixelRatio;
+        window.innerWidth *
+        window.devicePixelRatio;
 
       canvas.height =
-        window.innerHeight * window.devicePixelRatio;
+        window.innerHeight *
+        window.devicePixelRatio;
 
       canvas.style.width =
         window.innerWidth + "px";
@@ -54,7 +54,14 @@ const Animation = () => {
       canvas.style.height =
         window.innerHeight + "px";
 
-      context.setTransform(1, 0, 0, 1, 0, 0);
+      context.setTransform(
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      );
 
       context.scale(
         window.devicePixelRatio,
@@ -63,19 +70,13 @@ const Animation = () => {
 
     };
 
-
-
     setCanvasSize();
-
-
 
     // ==========================================
     // TOTAL FRAMES
     // ==========================================
 
     const frameCount = 182;
-
-
 
     // ==========================================
     // FRAME PATH
@@ -87,15 +88,11 @@ const Animation = () => {
 
     };
 
-
-
     // ==========================================
     // IMAGE ARRAY
     // ==========================================
 
     const images = [];
-
-
 
     // ==========================================
     // PRELOAD IMAGES
@@ -111,8 +108,6 @@ const Animation = () => {
 
     }
 
-
-
     // ==========================================
     // DRAW IMAGE
     // ==========================================
@@ -121,16 +116,12 @@ const Animation = () => {
 
       if (!img) return;
 
-
-
       context.clearRect(
         0,
         0,
         canvas.width,
         canvas.height
       );
-
-
 
       // ==========================================
       // IMAGE RATIO
@@ -140,16 +131,13 @@ const Animation = () => {
         img.width / img.height;
 
       const canvasRatio =
-        window.innerWidth / window.innerHeight;
-
-
+        window.innerWidth /
+        window.innerHeight;
 
       let drawWidth;
       let drawHeight;
       let x;
       let y;
-
-
 
       // ==========================================
       // FULLSCREEN COVER
@@ -157,33 +145,39 @@ const Animation = () => {
 
       if (imageRatio > canvasRatio) {
 
-        drawHeight = window.innerHeight;
+        drawHeight =
+          window.innerHeight;
 
         drawWidth =
           img.width *
-          (window.innerHeight / img.height);
+          (window.innerHeight /
+            img.height);
 
         x =
-          (window.innerWidth - drawWidth) / 2;
+          (window.innerWidth -
+            drawWidth) /
+          2;
 
         y = 0;
 
       } else {
 
-        drawWidth = window.innerWidth;
+        drawWidth =
+          window.innerWidth;
 
         drawHeight =
           img.height *
-          (window.innerWidth / img.width);
+          (window.innerWidth /
+            img.width);
 
         x = 0;
 
         y =
-          (window.innerHeight - drawHeight) / 2;
+          (window.innerHeight -
+            drawHeight) /
+          2;
 
       }
-
-
 
       // ==========================================
       // DRAW FRAME
@@ -199,8 +193,6 @@ const Animation = () => {
 
     };
 
-
-
     // ==========================================
     // RENDER FRAME
     // ==========================================
@@ -208,6 +200,7 @@ const Animation = () => {
     const render = () => {
 
       drawImage(
+
         images[
           Math.max(
             0,
@@ -219,11 +212,10 @@ const Animation = () => {
             )
           )
         ]
+
       );
 
     };
-
-
 
     // ==========================================
     // FIRST FRAME
@@ -235,86 +227,86 @@ const Animation = () => {
 
     };
 
-
-
     // ==========================================
-    // SLIDER
+    // SLIDER ELEMENTS
     // ==========================================
 
     const sliderTrack =
-      document.querySelector(".slider-track");
+      document.querySelector(
+        ".slider-track"
+      );
 
     const sliderKnob =
-      document.querySelector(".slider-knob");
+      document.querySelector(
+        ".slider-knob"
+      );
 
     const sliderProgress =
-      document.querySelector(".slider-progress");
-
-
+      document.querySelector(
+        ".slider-progress"
+      );
 
     let isDragging = false;
 
-
-
     // ==========================================
-    // START DRAG
+    // POINTER DOWN
     // ==========================================
 
-    const handleMouseDown = () => {
+    const handlePointerDown = () => {
 
       isDragging = true;
 
-    };
-
-
-
-    // ==========================================
-    // STOP DRAG
-    // ==========================================
-
-    const handleMouseUp = () => {
-
-      isDragging = false;
-
       gsap.to(sliderKnob, {
-        scale: 1,
+
+        scale: 1.2,
+
         duration: 0.2,
+
       });
 
     };
 
-
-
     // ==========================================
-    // MOVE
+    // POINTER UP
     // ==========================================
 
-    const handleMouseMove = (e) => {
+    const handlePointerUp = () => {
+
+      isDragging = false;
+
+      gsap.to(sliderKnob, {
+
+        scale: 1,
+
+        duration: 0.2,
+
+      });
+
+    };
+
+    // ==========================================
+    // POINTER MOVE
+    // ==========================================
+
+    const handlePointerMove = (e) => {
 
       if (!isDragging) return;
-
-
 
       const rect =
         sliderTrack.getBoundingClientRect();
 
+      let clientX = e.clientX;
 
-
-      let x = e.clientX - rect.left;
-
-
+      let x =
+        clientX - rect.left;
 
       x = Math.max(
         0,
         Math.min(x, rect.width)
       );
 
-
-
       const progress =
         x / rect.width;
-
-
 
       // ==========================================
       // KNOB POSITION
@@ -323,12 +315,8 @@ const Animation = () => {
       sliderKnob.style.left =
         `${progress * 100}%`;
 
-
-
       sliderProgress.style.width =
         `${progress * 100}%`;
-
-
 
       // ==========================================
       // FRAME UPDATE
@@ -336,61 +324,49 @@ const Animation = () => {
 
       imageSequence.current.frame =
         Math.round(
-          progress * (frameCount - 1)
+          progress *
+          (frameCount - 1)
         );
-
-
-
-      gsap.to(sliderKnob, {
-        scale: 1.2,
-        duration: 0.2,
-      });
-
-
 
       render();
 
     };
-
-
 
     // ==========================================
     // EVENTS
     // ==========================================
 
     sliderKnob.addEventListener(
-      "mousedown",
-      handleMouseDown
+      "pointerdown",
+      handlePointerDown
     );
-
-
 
     window.addEventListener(
-      "mouseup",
-      handleMouseUp
+      "pointerup",
+      handlePointerUp
     );
-
-
 
     window.addEventListener(
-      "mousemove",
-      handleMouseMove
+      "pointermove",
+      handlePointerMove
     );
 
+    // ==========================================
+    // RESIZE
+    // ==========================================
 
+    const handleResize = () => {
+
+      setCanvasSize();
+
+      render();
+
+    };
 
     window.addEventListener(
       "resize",
-      () => {
-
-        setCanvasSize();
-
-        render();
-
-      }
+      handleResize
     );
-
-
 
     // ==========================================
     // CLEANUP
@@ -399,30 +375,28 @@ const Animation = () => {
     return () => {
 
       sliderKnob.removeEventListener(
-        "mousedown",
-        handleMouseDown
+        "pointerdown",
+        handlePointerDown
       );
 
-
-
       window.removeEventListener(
-        "mouseup",
-        handleMouseUp
+        "pointerup",
+        handlePointerUp
       );
 
-
+      window.removeEventListener(
+        "pointermove",
+        handlePointerMove
+      );
 
       window.removeEventListener(
-        "mousemove",
-        handleMouseMove
+        "resize",
+        handleResize
       );
 
     };
 
   }, []);
-
-
-
 
   return (
 
@@ -436,8 +410,6 @@ const Animation = () => {
         ref={canvasRef}
         id="sequence"
       />
-
-
 
       {/* ==========================================
           SLIDER

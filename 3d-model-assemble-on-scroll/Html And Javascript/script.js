@@ -237,11 +237,13 @@ const tl = gsap.timeline({
 
     pin: true,
 
-    anticipatePin: 1
+    anticipatePin: 1,
 
   }
 
 });
+
+ScrollTrigger.refresh();
 
 
 
@@ -250,9 +252,9 @@ const tl = gsap.timeline({
 // HORIZONTAL SCROLL
 // =========================================
 
-tl.to(panels, {
+tl.to(".horizontal-wrapper", {
 
-  xPercent: -100 * (panels.length - 0.4),
+  xPercent: -100 * (panels.length - 1),
 
   ease: "none",
 
