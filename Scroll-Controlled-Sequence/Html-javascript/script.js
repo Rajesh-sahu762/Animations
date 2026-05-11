@@ -361,3 +361,67 @@ gsap.to(sliderKnob,{
   render();
 
 });
+
+
+// =========================================
+// TOUCH SUPPORT
+// =========================================
+
+window.addEventListener("touchmove",(e)=>{
+
+  if(!isDragging) return;
+
+  const touch = e.touches[0];
+
+  const rect =
+    sliderTrack.getBoundingClientRect();
+
+  let x =
+    touch.clientX - rect.left;
+
+  x = Math.max(
+    0,
+    Math.min(x, rect.width)
+  );
+
+  const progress = x / rect.width;
+
+  sliderKnob.style.left =
+    `${progress * 100}%`;
+
+  sliderProgress.style.width =
+    `${progress * 100}%`;
+
+  imageSequence.frame = Math.min(
+
+    frameCount - 1,
+
+    Math.round(
+      progress * (frameCount - 1)
+    )
+
+  );
+
+  render();
+
+});
+
+
+sliderKnob.addEventListener(
+  "touchstart",
+  ()=>{
+
+    isDragging = true;
+
+  }
+);
+
+
+window.addEventListener(
+  "touchend",
+  ()=>{
+
+    isDragging = false;
+
+  }
+);
